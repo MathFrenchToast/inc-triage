@@ -38,7 +38,7 @@ Contrairement aux LLM génératifs (GPT, Claude) qui génèrent du texte mot à 
 ### Commande d'exécution
 Pour classifier un rapport d'incident :
 ```bash
-.venv/bin/python classify.py inc-follow-test.md
+.venv/bin/python classify.py test/inc-follow-test.md
 ```
 
 ---
@@ -49,7 +49,7 @@ Le résultat est émis sur `stdout` au format JSON, comprenant le statut, le dé
 
 ```json
 {
-  "file": "inc-follow-test.md",
+  "file": "test/inc-follow-test.md",
   "classification": "CRITICAL",
   "scores": {
     "production": 0.9442,
@@ -81,13 +81,13 @@ Pour éviter l'observation visuelle manuelle et obtenir des distributions statis
 ### A. Profilage continu haute fréquence (`profile`)
 Échantillonne la consommation CPU/RAM (`/proc`) et GPU/VRAM (`nvidia-smi`) toutes les 50 ms pendant toute la durée d'exécution d'un rapport :
 ```bash
-.venv/bin/python profile_run.py profile inc-follow-test.md
+.venv/bin/python profile_run.py profile test/inc-follow-test.md
 ```
 
 ### B. Benchmark Mode Service / Daemon (`benchmark --warm`)
 Simule le comportement d'un **service ou d'une API en production** : le modèle est initialisé une seule fois en mémoire VRAM (~4 s), puis $N$ requêtes d'inférence pure sont évaluées à chaud :
 ```bash
-.venv/bin/python profile_run.py benchmark inc-follow-test.md --warm -n 10
+.venv/bin/python profile_run.py benchmark test/inc-follow-test.md --warm -n 10
 ```
 Exemple de distribution obtenue sur GPU RTX 3090 :
 ```text
@@ -99,7 +99,7 @@ Exemple de distribution obtenue sur GPU RTX 3090 :
 ### C. Benchmark Cold-Start CLI (`benchmark`)
 Mesure l'exécution ponctuelle en sous-processus complet (avec chargement initial à chaque appel) :
 ```bash
-.venv/bin/python profile_run.py benchmark inc-follow-test.md -n 5
+.venv/bin/python profile_run.py benchmark test/inc-follow-test.md -n 5
 ```
 
 *Ajoutez le flag `--json` sur n'importe quel mode pour exporter directement les statistiques dans un pipeline CI/CD ou d'observabilité.*
