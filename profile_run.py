@@ -76,8 +76,7 @@ def compute_stats(data: list[float] | np.ndarray) -> dict[str, float]:
 def profile_execution(report_path: Path, interval_ms: int = 50) -> dict:
     """Échantillonne en continu CPU, RAM, GPU Util et VRAM pendant l'exécution."""
     python_bin = sys.executable
-    script_path = Path(__file__).parent / "classify.py"
-    cmd = [python_bin, str(script_path), str(report_path)]
+    cmd = [python_bin, "-m", "inc_triage.classify", str(report_path)]
 
     # Démarrage du sous-processus nvidia-smi pour la télémétrie GPU à haute fréquence
     smi_cmd = [
@@ -160,8 +159,8 @@ def run_warm_benchmark(report_path: Path, iterations: int = 10) -> dict:
     import resource
     import torch
     from laya import Router
-    from classify import extract_text
-    from questions import QUESTIONS
+    from inc_triage.classify import extract_text
+    from inc_triage.questions import QUESTIONS
 
     text = extract_text(report_path)
     router = Router()
@@ -204,8 +203,7 @@ def run_warm_benchmark(report_path: Path, iterations: int = 10) -> dict:
 def run_benchmark(report_path: Path, iterations: int = 10) -> dict:
     """Exécute N passes en sous-processus pour mesurer le comportement cold start CLI."""
     python_bin = sys.executable
-    script_path = Path(__file__).parent / "classify.py"
-    cmd = [python_bin, str(script_path), str(report_path)]
+    cmd = [python_bin, "-m", "inc_triage.classify", str(report_path)]
 
     inference_durations = []
     load_durations = []

@@ -9,7 +9,10 @@ from pathlib import Path
 import torch
 from laya import Router
 
-from questions import QUESTIONS
+try:
+    from inc_triage.questions import QUESTIONS
+except ImportError:
+    from questions import QUESTIONS
 
 
 def extract_text(path: Path) -> str:

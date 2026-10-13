@@ -36,9 +36,13 @@ Contrairement aux LLM génératifs (GPT, Claude) qui génèrent du texte mot à 
 - Environnement virtuel configuré (ex. via `uv` ou `venv`)
 
 ### Commande d'exécution
-Pour classifier un rapport d'incident :
+Le projet s'exécute directement via la commande CLI dédiée du package :
 ```bash
-.venv/bin/python classify.py test/inc-follow-test.md
+.venv/bin/inc-triage test/inc-follow-test.md
+```
+ou alternativement via le module Python :
+```bash
+.venv/bin/python -m inc_triage.classify test/inc-follow-test.md
 ```
 
 ---
