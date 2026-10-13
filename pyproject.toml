@@ -1,0 +1,19 @@
+[project]
+name = "inc-triage"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "DevOps Team", email = "devops@example.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "laya>=0.3.28",
+]
+
+[project.scripts]
+inc-triage = "inc_triage:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"

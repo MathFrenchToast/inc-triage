@@ -1,0 +1,51 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environnements virtuels
+.venv/
+venv/
+ENV/
+env/
+
+# Variables d'environnement & Secrets
+.env
+.env.*
+!.env.example
+
+# Distribution & Build
+build/
+dist/
+*.egg-info/
+*.egg
+eggs/
+.eggs/
+
+# Modèles, poids et checkpoints locaux
+checkpoints/
+checkpoint-*/
+*.safetensors
+*.pt
+*.bin
+*.onnx
+
+# Caches d'outils et de linters
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Logs & Traces
+*.log
+
+# IDE & Éditeurs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
